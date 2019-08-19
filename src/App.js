@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Speak from "./components/Speak.js"; 
+
+
+export const asyncFunc = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve("Success!"); 
+    }, 1000);
+  });
+};
 
 class App extends Component {
+  state = {
+    message: "",
+  }
+  speak = () => {
+    this.setState({message: "Bark"}); 
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,6 +36,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Speak speak={this.speak} message={this.state.message} /> 
         </header>
       </div>
     );
